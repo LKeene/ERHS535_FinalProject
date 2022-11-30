@@ -18,7 +18,12 @@ challenges <- bakeoff::challenges
 episodes <- bakeoff::episodes
 ratings <- bakeoff::ratings
 
-england_
+bakers <- bakers %>% 
+  select(series, baker, hometown)
+
+england_loc <- read_csv("../data/gb.csv")
+england_loc <- england_loc %>% 
+  select(city, lat, lng, admin_name)
 ```
 
 Column {data-width=650}
