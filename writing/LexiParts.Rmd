@@ -10,7 +10,7 @@ output:
 library(flexdashboard)
 
 library(tidyverse)
-install.packages("bakeoff")
+library(DT)
 library(bakeoff)
 
 bakers <- bakeoff::bakers
@@ -19,7 +19,7 @@ episodes <- bakeoff::episodes
 ratings <- bakeoff::ratings
 
 bakers <- bakers %>% 
-  select(series, baker, hometown)
+  select(series, baker, hometown, series_winner)
 
 england_loc <- read_csv("../data/gb.csv")
 england_loc <- england_loc %>% 
@@ -29,9 +29,17 @@ england_loc <- england_loc %>%
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Data Table
 
 ```{r}
+challenges <- challenges %>% 
+  filter(!is.na(result))
+
+datatable(challenges, colnames = c("Series", "Episode", "Baker", "Result",
+                                   "Signature", "Technical", "Showstopper"), 
+          extensions = "Scroller", style="bootstrap", class="compact", 
+          width="100%", options=list(deferRender=TRUE, scrollY=300, 
+                                     scroller=TRUE))
 
 ```
 
