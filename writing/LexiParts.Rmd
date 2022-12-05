@@ -20,13 +20,15 @@ ratings <- bakeoff::ratings
 
 bakers <- bakers %>% 
   select(series, baker, hometown, series_winner) %>% 
-  separate(hometown, c("city", "other"), sep = ",")
+  separate(hometown, c("city", "other"), sep = ",") %>% 
+  mutate(admin_name.y = city)
 
 england_loc <- read_csv("../data/gb.csv")
 england_loc <- england_loc %>% 
   select(city, lat, lng, admin_name)
 
-left_join(bakers, england_loc, by = "city")
+joined <- left_join(bakers, england_loc, by = "city")
+left_join(joined, england_loc, by = "admin_name")
 ```
 
 Column {data-width=650}
