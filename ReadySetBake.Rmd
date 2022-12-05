@@ -1,19 +1,15 @@
 ---
-title: "Ready Set Bake!"
-author: "Victoria Nieciecki"
-date: "2022-11-30"
+title: "Ready, Set, BAKE!"
+author: "Victoria & Lexi"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
-    
+     
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-library(readr)
-library(lubridate)
-library(shiny)
 library(jsonlite)
 library(maptools)
 library(ggplot2)
@@ -25,8 +21,16 @@ library(plotly)
 library(DT)
 library(ggthemes)
 library(viridis)
+library(bakeoff)
+
 
 ```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+<img src="https://media.giphy.com/media/LixsZBjJGgPo5RpyQt/giphy.gif" width="230">
+
+WORDS
 
 
 Column {data-width=650}
