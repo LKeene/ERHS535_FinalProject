@@ -11,6 +11,9 @@ library(flexdashboard)
 library(stringr)
 library(tidyverse)
 library(DT)
+library(dygraphs)
+library(lubridate)
+library(xts)
 library(bakeoff)
 
 bakers <- bakeoff::bakers
@@ -27,8 +30,8 @@ england_loc <- read_csv("../data/gb.csv")
 england_loc <- england_loc %>% 
   select(city, lat, lng, admin_name)
 
-joined <- left_join(bakers, england_loc, by = "city")
-left_join(joined, england_loc, by = "admin_name")
+#joined <- left_join(bakers, england_loc, by = "city")
+#left_join(joined, england_loc, by = "admin_name")
 ```
 
 Column {data-width=650}
@@ -54,7 +57,23 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
+flex_ufo_data %>% 
+  group_by(sighting_year) %>% 
+  summarize(n_year = n()) %>% 
+  ungroup() %>% 
+  ggplot() +
+  geom_line(aes(x = sighting_year, y = n_year)) +
+  labs(x = "Year", y = "Sighting Count", title = "UFO Sightings in Colorado per Year") +
+  theme_few()
 
+viewers <- ratings %>% 
+  mutate(uk_airdate = ymd(uk_airdate)) %>% 
+  select(uk_airdate, viewers_7day, viewers_28day) 
+
+xts <- xts(x = viewers[,-1], order.by = viewers_7day$uk_airdate)
+
+p <- dygraph(xts) %>% dyRangeSelector()
+p
 ```
 
 ### Chart C
