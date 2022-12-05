@@ -8,7 +8,7 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
-
+library(stringr)
 library(tidyverse)
 library(DT)
 library(bakeoff)
@@ -19,11 +19,14 @@ episodes <- bakeoff::episodes
 ratings <- bakeoff::ratings
 
 bakers <- bakers %>% 
-  select(series, baker, hometown, series_winner)
+  select(series, baker, hometown, series_winner) %>% 
+  separate(hometown, c("city", "other"), sep = ",")
 
 england_loc <- read_csv("../data/gb.csv")
 england_loc <- england_loc %>% 
   select(city, lat, lng, admin_name)
+
+left_join(bakers, england_loc, by = "city")
 ```
 
 Column {data-width=650}
