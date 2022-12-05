@@ -1,0 +1,50 @@
+---
+title: "Ready, Set, BAKE!"
+author: "Victoria & Lexi"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+     
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(jsonlite)
+library(maptools)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(purrr)
+library(leaflet)
+library(plotly)
+library(DT)
+library(ggthemes)
+library(viridis)
+library(bakeoff)
+
+
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+<img src="https://media.giphy.com/media/LixsZBjJGgPo5RpyQt/giphy.gif" width="230">
+
+WORDS
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+### Big plot
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### smaller plot 1
+
+
+### smaller plot 2
+
+
+
+
