@@ -1,0 +1,46 @@
+---
+title: "Ready Set Bake!"
+author: "Victoria Nieciecki"
+date: "2022-11-30"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(readr)
+library(lubridate)
+library(shiny)
+library(jsonlite)
+library(maptools)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(purrr)
+library(leaflet)
+library(plotly)
+library(DT)
+library(ggthemes)
+library(viridis)
+
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+### Big plot
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+### smaller plot 1
+
+
+### smaller plot 2
+
+
+
+
