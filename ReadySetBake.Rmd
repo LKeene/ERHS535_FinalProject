@@ -24,14 +24,40 @@ library(viridis)
 library(bakeoff)
 
 
+bakers <- bakeoff::bakers
+challenges <- bakeoff::challenges
+episodes <- bakeoff::episodes
+ratings <- bakeoff::ratings
+
+
+
 ```
+
+
+
+
 
 Inputs {.sidebar}
 -----------------------------------------------------------------------
+<center>
 <img src="https://media.giphy.com/media/LixsZBjJGgPo5RpyQt/giphy.gif" width="230">
+</center>
 
-WORDS
+<div align="center">### **Welcome to our ERHS 535 project!**
 
+
+Our project is based on the #TidyTuesday Great British Bake Off data set. This 
+data includes information about the baker's hometown (Plot 1), their 
+standing (Table 1), and viewership metrics for seasons 1 - 10 (Plot 2). Click 
+on **__** to view hometown locations by season. Click and drag the toggle to 
+zoom in on viewership metrics. 
+
+
+Authors: [Lexi](https://github.com/LKeene) & [Victoria](https://github.com/tashoo)  
+Data Sources: [bakeoff](https://bakeoff.netlify.app/).
+
+<img src="data/bakeoff_logo.png" height="110px" width="100px" />
+</div>
 
 Column {data-width=650}
 -----------------------------------------------------------------------
@@ -44,7 +70,17 @@ Column {data-width=350}
 
 
 ### smaller plot 2
+```{r}
+challenges <- challenges %>% 
+  filter(!is.na(result))
 
+datatable(challenges, colnames = c("Series", "Episode", "Baker", "Result",
+                                   "Signature", "Technical", "Showstopper"), 
+          extensions = "Scroller", style="bootstrap", class="compact", 
+          width="100%", options=list(deferRender=TRUE, scrollY=100, 
+                                     scroller=TRUE, height = "fit-content"))
+
+```
 
 
 
