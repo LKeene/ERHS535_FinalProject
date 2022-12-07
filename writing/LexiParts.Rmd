@@ -57,22 +57,30 @@ Column {data-width=350}
 ### Chart B
 
 ```{r}
-flex_ufo_data %>% 
-  group_by(sighting_year) %>% 
-  summarize(n_year = n()) %>% 
-  ungroup() %>% 
-  ggplot() +
-  geom_line(aes(x = sighting_year, y = n_year)) +
-  labs(x = "Year", y = "Sighting Count", title = "UFO Sightings in Colorado per Year") +
-  theme_few()
-
 viewers <- ratings %>% 
   mutate(uk_airdate = ymd(uk_airdate)) %>% 
   select(uk_airdate, viewers_7day, viewers_28day) 
 
-xts <- xts(x = viewers[,-1], order.by = viewers_7day$uk_airdate)
+xts <- xts(x = viewers[,-1], order.by = viewers$uk_airdate)
 
-p <- dygraph(xts) %>% dyRangeSelector()
+p <- dygraph(xts, main = "Great British Bake Off Viewership", ylab = "# viewers (millions)") %>% 
+  dyOptions(stepPlot = TRUE) %>% 
+  dySeries("viewers_7day", label = "7 Day Viewers")%>%
+  dySeries("viewers_28day", label = "28 Day Viewers") %>% 
+  dyHighlight(highlightCircleSize = 4, highlightSeriesBackgroundAlpha = 0.5) %>% 
+  dyShading(from = "2010-08-17", to = "2010-09-21", color = "bisque") %>% 
+  dyShading(from = "2011-08-18", to = "2011-10-04", color = "bisque") %>% 
+  dyShading(from = "2012-08-14", to = "2012-10-22", color = "bisque") %>% 
+  dyShading(from = "2013-08-20", to = "2013-10-22", color = "bisque") %>% 
+  dyShading(from = "2014-08-06", to = "2014-10-08", color = "bisque") %>% 
+  dyShading(from = "2015-08-05", to = "2015-10-07", color = "bisque") %>% 
+  dyShading(from = "2016-08-24", to = "2016-10-26", color = "bisque") %>% 
+  dyShading(from = "2017-08-29", to = "2017-10-31", color = "bisque") %>% 
+  dyShading(from = "2018-08-28", to = "2018-10-30", color = "bisque") %>% 
+  dyShading(from = "2019-08-27", to = "2019-10-29", color = "bisque") %>% 
+  dyEvent("2014-08-06", "BBC One", labelLoc = "bottom") %>% 
+  dyEvent("2017-08-29", "Channel 4", labelLoc = "bottom") %>% 
+  dyRangeSelector()
 p
 ```
 
