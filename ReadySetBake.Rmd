@@ -1,9 +1,9 @@
 ---
 title: "Ready, Set, BAKE!"
-author: "Victoria & Lexi"
+author: "Lexi & Victoria"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
      
 ---
@@ -25,13 +25,7 @@ challenges <- bakeoff::challenges
 episodes <- bakeoff::episodes
 ratings <- bakeoff::ratings
 
-
-
 ```
-
-
-
-
 
 Inputs {.sidebar}
 -----------------------------------------------------------------------
@@ -50,14 +44,15 @@ zoom in on viewership metrics.
 
 
 Authors: [Lexi](https://github.com/LKeene) & [Victoria](https://github.com/tashoo)  
-Data Sources: [bakeoff](https://bakeoff.netlify.app/).
+Data Sources: [bakeoff package](https://bakeoff.netlify.app/)
 
 <img src="data/bakeoff_logo.png" height="110px" width="100px" />
 </div>
 
 Column {data-width=650}
 -----------------------------------------------------------------------
-### Big plot
+
+### **Viewership Across Seasons**
 ```{r}
 viewers <- ratings %>% 
   mutate(uk_airdate = ymd(uk_airdate)) %>% 
@@ -65,7 +60,7 @@ viewers <- ratings %>%
 
 xts <- xts(x = viewers[,-1], order.by = viewers$uk_airdate)
 
-p <- dygraph(xts, main = "Great British Bake Off Viewership", ylab = "# viewers (millions)") %>% 
+p <- dygraph(xts, ylab = "# viewers (millions)") %>% 
   dyOptions(stepPlot = TRUE) %>% 
   dySeries("viewers_7day", label = "7 Day Viewers")%>%
   dySeries("viewers_28day", label = "28 Day Viewers") %>% 
@@ -88,12 +83,21 @@ p
 
 Column {data-width=350}
 -----------------------------------------------------------------------
-### smaller plot 1
+### **Baker Hometowns**
+
+```{r}
+leaflet() %>% 
+  addTiles() %>% 
+  setView(lng = -4.5, lat = 55.5, zoom = 4.5) %>%
+  addTiles() 
+
+```
 
 
 
 
-### smaller plot 2
+
+### **Baker Stats**
 ```{r}
 challenges <- challenges %>% 
   filter(!is.na(result))

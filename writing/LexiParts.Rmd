@@ -1,9 +1,6 @@
 ---
 title: "Untitled"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -21,6 +18,9 @@ challenges <- bakeoff::challenges
 episodes <- bakeoff::episodes
 ratings <- bakeoff::ratings
 
+```
+  
+```{r}
 #bakers <- bakers %>% 
 #  select(series, baker, hometown, series_winner) %>% 
 #  separate(hometown, c("city", "other"), sep = ",|\\")
@@ -40,8 +40,16 @@ england_loc <- england_loc %>%
 #>>>>>>> Stashed changes
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
+
+```{r}
+
+leaflet() %>% 
+  addTiles() %>% 
+  setView(lng = -4.5, lat = 55.5, zoom = 5) %>%
+  addTiles() 
+
+```
+
 
 ### Data Table
 
@@ -57,10 +65,8 @@ datatable(challenges, colnames = c("Series", "Episode", "Baker", "Result",
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
 
-### Chart B
+### dygraph
 
 ```{r}
 viewers <- ratings %>% 
@@ -90,9 +96,5 @@ p <- dygraph(xts, main = "Great British Bake Off Viewership", ylab = "# viewers 
 p
 ```
 
-### Chart C
 
-```{r}
-
-```
 
