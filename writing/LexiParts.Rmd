@@ -4,7 +4,6 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-library(flexdashboard)
 library(stringr)
 library(tidyverse)
 library(DT)
@@ -12,6 +11,7 @@ library(dygraphs)
 library(lubridate)
 library(xts)
 library(bakeoff)
+library(leaflet)
 
 bakers <- bakeoff::bakers
 challenges <- bakeoff::challenges
@@ -20,33 +20,31 @@ ratings <- bakeoff::ratings
 
 ```
   
-```{r}
-#bakers <- bakers %>% 
-#  select(series, baker, hometown, series_winner) %>% 
-#  separate(hometown, c("city", "other"), sep = ",|\\")
- 
+```{r, message=FALSE, warning=FALSE}
+hometowns <- bakers %>% 
+  select(series, baker, baker_last, hometown, series_winner) %>% 
+  separate(hometown, c("city", "other"), sep = ",|/")
 
-england_loc <- read_csv("../data/gb.csv")
-england_loc <- england_loc %>% 
-  select(city, lat, lng, admin_name)
 
-#<<<<<<< Updated upstream
-#joined <- left_join(bakers, england_loc, by = "city")
-#left_join(joined, england_loc, by = "admin_name")
-#=======
-#joined <- left_join(bakers, england_loc, by = "city")
-#left_join(joined, england_loc, by = "admin_name")
+UK <- read_csv("../data/gb.csv")
 
-#>>>>>>> Stashed changes
 ```
 
 
 ```{r}
 
+hometowns <- hometowns %>%
+  left_join(UK)
+
+```
+
+```{r}
+
 leaflet() %>% 
   addTiles() %>% 
-  setView(lng = -4.5, lat = 55.5, zoom = 5) %>%
-  addTiles() 
+  setView(lng = -4.5, lat = 53, zoom = 4.5) %>%
+  addProviderTiles(providers$CartoDB.Voyager)
+
 
 ```
 

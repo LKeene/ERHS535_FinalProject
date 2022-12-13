@@ -88,8 +88,9 @@ Column {data-width=350}
 ```{r}
 leaflet() %>% 
   addTiles() %>% 
-  setView(lng = -4.5, lat = 55.5, zoom = 4.5) %>%
-  addTiles() 
+  setView(lng = -4.5, lat = 53, zoom = 4.5) %>%
+  addProviderTiles(providers$CartoDB.Voyager)
+
 
 ```
 
