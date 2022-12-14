@@ -38,10 +38,10 @@ Inputs {.sidebar}
 
 
 Our project is based on the #TidyTuesday Great British Bake Off data set. This 
-data includes information about the baker's hometown (Plot 1), their 
-standing (Table 1), and viewership metrics for seasons 1 - 10 (Plot 2). Click 
-on **__** to view hometown locations by season. Click and drag the toggle to 
-zoom in on viewership metrics. 
+data includes information about the baker's hometown, season finalist, and 
+viewership metrics for seasons 1 - 10. Click and drag the toggle to zoom in on 
+viewership metrics. Click on clusters to view multiple bakers from the same 
+town. Search table for finalists stats.
 
 
 Authors: [Lexi](https://github.com/LKeene) & [Victoria](https://github.com/tashoo)  
