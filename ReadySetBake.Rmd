@@ -116,16 +116,21 @@ leaflet(hometowns) %>%
 
 
 
-### **Baker Stats**
+### **Top Three Bakers**
 ```{r}
 challenges <- challenges %>% 
-  filter(!is.na(result))
+  filter(!is.na(result)) %>% 
+  mutate(season_baker = paste(baker, series, sep = "_"))
 
-datatable(challenges, colnames = c("Series", "Episode", "Baker", "Result",
-                                   "Signature", "Technical", "Showstopper"), 
-          extensions = "Scroller", style="bootstrap", class="compact", 
-          width="100%", options=list(deferRender=TRUE, scrollY=100, 
-                                     scroller=TRUE, height = "fit-content"))
+episodes_appeared <- bakers %>% 
+  mutate(season_baker = paste(baker, series, sep = "_")) %>% 
+  select(baker, total_episodes_appeared, season_baker)
+
+table_data <- left_join(challenges, episodes_appeared, by = "season_baker") %>% 
+  filter(result %in% c("Runner-up", "WINNER")) %>% 
+  select(series, baker.x, result)
+
+datatable(table_data, colnames = c("Series", "Baker", "Result"))
 
 ```
 
