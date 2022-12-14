@@ -126,11 +126,25 @@ episodes_appeared <- bakers %>%
   mutate(season_baker = paste(baker, series, sep = "_")) %>% 
   select(baker, total_episodes_appeared, season_baker)
 
-table_data <- left_join(challenges, episodes_appeared, by = "season_baker") %>% 
-  filter(result %in% c("Runner-up", "WINNER")) %>% 
-  select(series, baker.x, result)
+star_bakers <- episodes %>% 
+  filter(!is.na(sb_name)) %>% 
+  select(series, star_bakers, sb_name) %>% 
+  filter(sb_name != "Holly, Jason") %>% 
+  mutate(season_baker = paste(sb_name, series, sep = "_")) %>% 
+  group_by(season_baker) %>% 
+  count(star_bakers)
 
-datatable(table_data, colnames = c("Series", "Baker", "Result"))
+table_data <- left_join(challenges, episodes_appeared, by = "season_baker") %>% 
+  filter(result %in% c("Runner-up", "WINNER"))
+
+table_data <- left_join(table_data, star_bakers, by = "season_baker") %>% 
+  select(series, baker.x, result, n) %>% 
+  mutate(n = coalesce(n, 0))
+
+table_data <- table_data[, c(1, 2, 4, 3)]
+
+
+datatable(table_data, colnames = c("Series", "Baker", "Times Star Baker", "Result"))
 
 ```
 
