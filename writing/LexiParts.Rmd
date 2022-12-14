@@ -94,11 +94,7 @@ table_data <- left_join(challenges, episodes_appeared, by = "season_baker") %>%
   filter(result %in% c("Runner-up", "WINNER")) %>% 
   select(series, baker.x, result)
 
-datatable(table_data, colnames = c("Series", "Baker", "Result"), 
-          extensions = "Scroller", style="bootstrap", class="compact", 
-          width="100%", options=list(deferRender=TRUE, scrollY=300, 
-                                     scroller=TRUE))
-
+datatable(table_data, colnames = c("Series", "Baker", "Result"))
 ```
 
 
