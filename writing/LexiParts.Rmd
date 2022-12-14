@@ -21,13 +21,11 @@ ratings <- bakeoff::ratings
 
 ```
   
-  
-  
+### Map baker hometowns
 ```{r}
-
-# hometowns <- bakers %>% 
+# hometowns <- bakers %>%
 #   select(series, baker, baker_last, hometown, series_winner) %>%
-#   mutate(hometown = recode(hometown, 'North London'='London', 
+#   mutate(hometown = recode(hometown, 'North London'='London',
 #                                      'Durham'='Durham, UK',
 #                                      'Newport' = 'Newport, UK',
 #                                      'Halifax' = 'Halifax, UK',
@@ -37,13 +35,15 @@ ratings <- bakeoff::ratings
 #                                      'Derby / Holywood, County Down' = 'Derby, UK',
 #                                      'Leeds / Luton'='Leeds',
 #                                      'Woodford, London / Vilkaviškis, Lithuania'='Woodford, London'))%>%
-#   add_row(baker = rep("Tent", times=3), hometown = c("Valentines Mansion", "Harptree Court", "Welford Park")) %>%
+#   mutate(series = as.character(series)) %>%
+#   add_row(baker = c("Valentines Mansion", "Harptree Court", "Welford Park"), 
+#           hometown = c("Valentines Mansion", "Harptree Court", "Welford Park"), 
+#           series= c("2", "3-4", "5-10")) %>%
+#   mutate(series_winner = recode(series_winner, '1'='Winner',
+#                                                '0'='Lost',
+#                                                .missing ='Tent')) %>%
 #   geocode(hometown, method = 'osm', lat = latitude , long = longitude)
 # 
-# hometowns <- hometowns %>%
-#   mutate(series_winner = recode(series_winner, '1'='Winner',
-#                                                '0'='Lost', 
-#                                                .missing ='Tent')) 
 # 
 # write_csv(hometowns, "baker_hometowns.csv")
 
@@ -64,16 +64,16 @@ leaflet(hometowns) %>%
                    color = ~pal(hometowns$series_winner), 
                    radius = 5, 
                    fill = T,
-                   fillOpacity = 0.6,
+                   fillOpacity = 0.8,
                    stroke = FALSE,
                    clusterOptions = markerClusterOptions(maxClusterRadius=0),
                    popup = paste(hometowns$baker,
                                  hometowns$series, 
                                  sep = ", Series ")) %>%
-   addLegend("bottomright", 
-            colors = c("red",  "navy", "green"),
-            labels = c("Lost", "Tent", "Winner"),
-            opacity = 0.6)
+  leaflet::addLegend("bottomright", 
+            pal=pal,
+            values=hometowns$series_winner,
+            opacity = 0.8)
 
 
 ```

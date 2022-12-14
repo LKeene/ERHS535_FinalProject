@@ -9,7 +9,7 @@ series,baker,baker_last,hometown,series_winner,latitude,longitude
 1,Mark,Whithers,"South Wales, UK",Lost,51.64448175,-3.326878750000005
 1,Miranda,Browne,"Midhurst, West Sussex",Lost,50.985523,-0.7399644
 1,Ruth,Clemens,"Poynton, Cheshire",Lost,53.3492505,-2.1174396
-2,Ben,Frazer,Northampton,Lost,52.23433665,-0.9028072768185827
+2,Ben,Frazer,Northampton,Lost,52.23433665,-0.9028072768185829
 2,Holly,Bell,Leicester,Lost,52.6362,-1.1331969
 2,Ian,Vallance,"Dunstable, Bedfordshire",Lost,51.8861316,-0.5209341
 2,Janet,Basu,"Formby, Liverpool",Lost,53.5583738,-3.077094124524356
@@ -28,11 +28,11 @@ series,baker,baker_last,hometown,series_winner,latitude,longitude
 3,John,Whaite,Wigan,Winner,53.5457188,-2.6264624
 3,Manisha,Parmar,Leicester,Lost,52.6362,-1.1331969
 3,Natasha,Stringer,"Tamworth, Staffordshire",Lost,52.6345819,-1.6948438
-3,Peter,Maloney,"Windsor, Berkshire",Lost,51.4534889,-1.0318729593399247
+3,Peter,Maloney,"Windsor, Berkshire",Lost,51.453488899999996,-1.0318729593399247
 3,Ryan,Chong,Bristol,Lost,51.4538022,-2.5972985
 3,Sarah-Jane,Willis,"Bewbush, West Sussex",Lost,51.1023286,-0.2227992
 3,Stuart,Marston-Smith,"Lichfield, Staffordshire",Lost,52.68064,-1.8243991722405983
-3,Victoria,Chester,Somerset,Lost,51.16175085,-3.0753867062227487
+3,Victoria,Chester,Somerset,Lost,51.161750850000004,-3.0753867062227487
 4,Ali,Imdad,"Saltley, Birmingham",Lost,52.4888251,-1.8571552
 4,Beca,Lyne-Pirkis,"Aldershot, Hampshire",Lost,51.2494169,-0.7630148
 4,Christine,Wallace,"Didcot, Oxfordshire",Lost,51.6121773,-1.2439778415871414
@@ -58,7 +58,7 @@ series,baker,baker_last,hometown,series_winner,latitude,longitude
 5,Nancy,Birtwhistle,"Barton-upon-Humber, Lincolnshire",Winner,53.6858065,-0.4395216
 5,Norman,Calder,"Portknockie, Moray",Lost,57.7034964,-2.8581483
 5,Richard,Burr,"Mill Hill, London",Lost,51.6154423,-0.2330675
-6,Alvin,Magallanes,"Bracknell, Berkshire",Lost,51.4534889,-1.0318729593399247
+6,Alvin,Magallanes,"Bracknell, Berkshire",Lost,51.453488899999996,-1.0318729593399247
 6,Dorret,Conway,"Penwortham, Lancashire",Lost,53.74143315,-2.7292367175458985
 6,Flora,Shedden,"Dunkeld, Perth and Kinross",Lost,56.5655711,-3.5862546
 6,Ian,Cumming,"Great Wilbraham, Cambridgeshire",Lost,52.194124,0.2651614
@@ -71,7 +71,7 @@ series,baker,baker_last,hometown,series_winner,latitude,longitude
 6,Tamal,Ray,Manchester,Lost,53.4794892,-2.2451148
 6,Ugnė,Bubnaityte,"Woodford, London",Lost,51.6068063,0.0340272
 7,Andrew,Smyth,"Derby, UK",Lost,52.9212617,-1.4761491
-7,Benjamina,Ebuehi,South London,Lost,51.51419575,-0.1134767748845356
+7,Benjamina,Ebuehi,South London,Lost,51.51419575,-0.11347677488453559
 7,Candice,Brown,"Barton-Le-Clay, Bedfordshire",Winner,51.9673954,-0.4256503
 7,Jane,Beedle,Beckenham,Lost,51.4070938,-0.0303183
 7,Kate,Barmby,"Brooke, Norfolk",Lost,52.5426489,1.3774088
@@ -117,8 +117,8 @@ series,baker,baker_last,hometown,series_winner,latitude,longitude
 10,Michelle,Evans-Fecci,"Tenby, Wales",Lost,51.6726128,-4.7050443
 10,Phil,Thorne,Rainham,Lost,51.3633052,0.6083609
 10,Priya,O'Shea,Leicester,Lost,52.6362,-1.1331969
-10,Rosie,Brandreth-Poynter,Somerset,Lost,51.16175085,-3.0753867062227487
+10,Rosie,Brandreth-Poynter,Somerset,Lost,51.161750850000004,-3.0753867062227487
 10,Steph,Blackwell,Chester,Lost,53.1908873,-2.8908955
-NA,Tent,NA,Valentines Mansion,Tent,51.572069299999995,0.06639135030156632
-NA,Tent,NA,Harptree Court,Tent,51.3009117,-2.6201636459087982
-NA,Tent,NA,Welford Park,Tent,51.4594808,-1.4139791
+2,Valentines Mansion,NA,Valentines Mansion,Tent,51.572069299999995,0.06639135030156632
+3-4,Harptree Court,NA,Harptree Court,Tent,51.3009117,-2.6201636459087982
+5-10,Welford Park,NA,Welford Park,Tent,51.4594808,-1.4139791
