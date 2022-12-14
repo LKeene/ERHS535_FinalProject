@@ -20,6 +20,7 @@ library(dygraphs)
 library(lubridate)
 library(xts)
 
+
 bakers <- bakeoff::bakers
 challenges <- bakeoff::challenges
 episodes <- bakeoff::episodes
@@ -58,9 +59,9 @@ viewers <- ratings %>%
   mutate(uk_airdate = ymd(uk_airdate)) %>% 
   select(uk_airdate, viewers_7day, viewers_28day) 
 
-xts <- xts(x = viewers[,-1], order.by = viewers$uk_airdate)
+foo <- xts(x = viewers[,-1], order.by = viewers$uk_airdate)
 
-p <- dygraph(xts, ylab = "# viewers (millions)") %>% 
+p <- dygraph(foo, ylab = "# viewers (millions)") %>% 
   dyOptions(stepPlot = TRUE) %>% 
   dySeries("viewers_7day", label = "7 Day Viewers")%>%
   dySeries("viewers_28day", label = "28 Day Viewers") %>% 
@@ -84,13 +85,30 @@ p
 Column {data-width=350}
 -----------------------------------------------------------------------
 ### **Baker Hometowns**
+```{r, message=FALSE}
+hometowns <- readr::read_csv('writing/baker_hometowns.csv')
 
-```{r}
-leaflet() %>% 
+pal <- colorFactor(c("red", "navy", "green"), domain = c("Winner", "Lost", "Tent"))
+
+leaflet(hometowns) %>% 
   addTiles() %>% 
   setView(lng = -4.5, lat = 53, zoom = 4.5) %>%
-  addProviderTiles(providers$CartoDB.Voyager)
-
+  addProviderTiles(providers$CartoDB.Voyager) %>%
+  addCircleMarkers(hometowns$longitude, 
+                   hometowns$latitude, 
+                   color = ~pal(hometowns$series_winner), 
+                   radius = 5, 
+                   fill = T,
+                   fillOpacity = 0.6,
+                   stroke = FALSE,
+                   clusterOptions = markerClusterOptions(maxClusterRadius=0),
+                   popup = paste(hometowns$baker,
+                                 hometowns$series, 
+                                 sep = ", Series ")) %>%
+  leaflet::addLegend("bottomright", 
+            pal=pal,
+            values=hometowns$series_winner,
+            opacity = 0.6)
 
 ```
 
