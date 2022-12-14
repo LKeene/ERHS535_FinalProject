@@ -96,7 +96,10 @@ star_bakers <- episodes %>%
   filter(sb_name != "Holly, Jason") %>% 
   mutate(season_baker = paste(sb_name, series, sep = "_")) %>% 
   group_by(season_baker) %>% 
-  count(star_bakers)
+  count(star_bakers) %>%
+  ungroup()
+
+star_bakers$n[star_bakers$season_baker == 'Holly_2'] <- 2
 
 table_data <- left_join(challenges, episodes_appeared, by = "season_baker") %>% 
   filter(result %in% c("Runner-up", "WINNER"))
